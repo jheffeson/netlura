@@ -1,0 +1,297 @@
+/* Importa as fontes usadas no titulo e no corpo da pagina. */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700&display=swap");
+
+:root {
+  --bg: #070707; /* Cor base mais escura do fundo. */
+  --bg-top: #0f0f0f; /* Cor superior do degrade de fundo. */
+  --bg-soft: #111111; /* Tom secundario de fundo para degradês. */
+  --card: #1a1a1a; /* Cor principal dos cards de perfil. */
+  --card-hover: #242424; /* Cor do card ao passar o mouse. */
+  --card-hover-end: #141414; /* Cor final do degrade do card no hover. */
+  --card-border: #2f2f2f; /* Cor da borda padrao do card. */
+  --card-border-hover: #575757; /* Cor da borda do card no hover. */
+  --text: #f5f5f5; /* Cor principal dos textos. */
+  --text-muted: #a8a8a8; /* Cor de texto com menor destaque. */
+  --brand: #e50914; /* Vermelho inspirado na identidade Netflix. */
+  --ring: #ffffff; /* Cor do contorno de foco para acessibilidade. */
+  --glow-strong: rgba(
+    229,
+    9,
+    20,
+    0.18
+  ); /* Cor da mancha de destaque principal no fundo. */
+  --glow-soft: rgba(
+    229,
+    9,
+    20,
+    0.12
+  ); /* Cor da mancha de destaque secundaria no fundo. */
+  --toggle-bg: #151515; /* Cor de fundo do botao de alternancia de tema. */
+  --toggle-border: #404040; /* Cor da borda do botao de alternancia de tema. */
+  --toggle-hover: #202020; /* Cor de fundo do botao ao passar o mouse. */
+  --shadow: 0 18px 45px rgba(0, 0, 0, 0.45); /* Sombra padrao dos cards. */
+}
+
+:root[data-theme="light"] {
+  --bg: #eef2f6; /* Cor base clara do fundo no modo light. */
+  --bg-top: #fbfcfe; /* Cor superior do degrade no modo light. */
+  --bg-soft: #f7f9fc; /* Tom secundario claro para degradês. */
+  --card: #ffffff; /* Cor principal clara dos cards. */
+  --card-hover: #f4f6f9; /* Cor do card no hover em tema claro. */
+  --card-hover-end: #edf2f8; /* Cor final do degrade do card no hover em tema claro. */
+  --card-border: #cfd8e3; /* Cor da borda padrao no tema claro. */
+  --card-border-hover: #a8b5c5; /* Cor da borda no hover no tema claro. */
+  --text: #1a2230; /* Cor principal de texto no tema claro. */
+  --text-muted: #4c5a6d; /* Cor secundaria de texto no tema claro. */
+  --ring: #1f2937; /* Cor do contorno de foco no tema claro. */
+  --glow-strong: rgba(229, 9, 20, 0.13); /* Mancha principal no fundo claro. */
+  --glow-soft: rgba(229, 9, 20, 0.08); /* Mancha secundaria no fundo claro. */
+  --toggle-bg: #ffffff; /* Cor de fundo do botao de tema no modo claro. */
+  --toggle-border: #c9d2dd; /* Cor da borda do botao de tema no modo claro. */
+  --toggle-hover: #f2f5f8; /* Cor de hover do botao de tema no modo claro. */
+  --shadow: 0 14px 30px rgba(33, 44, 58, 0.16); /* Sombra mais suave para o tema claro. */
+}
+
+* {
+  box-sizing: border-box; /* Inclui borda e padding no calculo do tamanho. */
+  margin: 0; /* Remove margens padrao dos elementos. */
+  padding: 0; /* Remove paddings padrao dos elementos. */
+}
+
+html,
+body {
+  min-height: 100%; /* Garante altura minima ocupando toda a tela. */
+}
+
+body {
+  min-height: 100dvh; /* Ajusta altura real considerando barras dinamicas em mobile. */
+  font-family:
+    "Manrope", sans-serif; /* Define a fonte principal do conteudo. */
+  color: var(--text); /* Aplica a cor principal aos textos da pagina. */
+  background:
+    radial-gradient(circle at 15% 20%, var(--glow-strong), transparent 34%),
+    /* Mancha vermelha suave no canto superior esquerdo. */
+    radial-gradient(circle at 85% 80%, var(--glow-soft), transparent 28%),
+    /* Mancha vermelha suave no canto inferior direito. */
+    linear-gradient(180deg, var(--bg-top) 0%, var(--bg) 60%); /* Degrade principal do topo para baixo. */
+  display: grid; /* Usa grid para facilitar centralizacao global. */
+  place-items: center; /* Centraliza o conteudo no eixo horizontal e vertical. */
+  padding: clamp(1rem, 3vw, 2rem) clamp(0.75rem, 2vw, 1.25rem); /* Cria espaco interno fluido conforme a largura da tela. */
+}
+
+main {
+  width: min(
+    980px,
+    100%
+  ); /* Limita largura maxima sem quebrar em telas pequenas. */
+  padding-inline: clamp(
+    0.25rem,
+    1vw,
+    0.75rem
+  ); /* Adiciona respiro lateral interno em telas estreitas. */
+  text-align: center; /* Centraliza textos e elementos internos. */
+}
+
+.page-header {
+  display: flex; /* Organiza o cabecalho em linha. */
+  justify-content: flex-end; /* Posiciona o botao de tema no canto direito. */
+  margin-bottom: 1rem; /* Cria espaco entre o botao e o titulo. */
+}
+
+.theme-toggle {
+  border: 1px solid var(--toggle-border); /* Define borda do botao conforme o tema atual. */
+  border-radius: 999px; /* Cria formato de pílula no botao. */
+  background: var(--toggle-bg); /* Define fundo do botao conforme o tema. */
+  color: var(--text); /* Mantem texto do botao com cor principal. */
+  font: inherit; /* Mantem familia tipografica da pagina. */
+  font-weight: 700; /* Destaca o texto do botao de tema. */
+  font-size: 0.85rem; /* Mantem o botao compacto sem perder leitura. */
+  letter-spacing: 0.01em; /* Aplica leve espacamento para legibilidade. */
+  padding: 0.45rem 0.95rem; /* Define area de toque e conforto visual do botao. */
+  cursor: pointer; /* Indica interacao no elemento. */
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease; /* Suaviza transicoes visuais do botao. */
+}
+
+.theme-toggle:hover {
+  background: var(
+    --toggle-hover
+  ); /* Altera fundo no hover para feedback visual. */
+  border-color: var(--card-border-hover); /* Destaca borda no hover. */
+  transform: translateY(-1px); /* Eleva sutilmente o botao ao passar o mouse. */
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid var(--ring); /* Exibe contorno forte no foco por teclado. */
+  outline-offset: 2px; /* Afasta contorno para melhor visualizacao. */
+}
+
+h1 {
+  font-family:
+    "Bebas Neue", sans-serif; /* Usa fonte de impacto no titulo principal. */
+  font-size: clamp(
+    1.8rem,
+    5vw,
+    3.4rem
+  ); /* Escala o tamanho do titulo conforme a tela. */
+  letter-spacing: 0.08em; /* Aumenta espacamento entre letras para estilo cinematico. */
+  margin-bottom: 2.4rem; /* Separa o titulo da lista de perfis. */
+  text-shadow: 0 6px 22px rgba(0, 0, 0, 0.45); /* Adiciona profundidade ao titulo. */
+}
+
+section {
+  width: 100%; /* Faz a secao ocupar toda a largura disponivel do main. */
+}
+
+.profiles {
+  list-style: none; /* Remove marcadores da lista semantica. */
+  display: grid; /* Organiza os perfis em grade. */
+  grid-template-columns: repeat(
+    4,
+    minmax(0, 1fr)
+  ); /* Define quatro colunas em telas amplas para melhor previsibilidade. */
+  max-width: 760px; /* Limita a largura da grade para evitar esticamento excessivo. */
+  margin: 0 auto; /* Centraliza a grade dentro da secao. */
+  justify-content: center; /* Centraliza as colunas dentro do container. */
+  gap: clamp(
+    0.75rem,
+    1.8vw,
+    1rem
+  ); /* Define espacamento fluido entre os cards. */
+}
+
+.profile button {
+  width: 100%; /* Faz o botao ocupar toda a largura do item da lista. */
+  border: 1px solid var(--card-border); /* Define borda discreta para separar o card do fundo. */
+  border-radius: 14px; /* Arredonda os cantos para visual moderno. */
+  background: linear-gradient(
+    180deg,
+    var(--card) 0%,
+    var(--bg-soft) 100%
+  ); /* Aplica degrade escuro no card. */
+  color: inherit; /* Mantem a mesma cor de texto do elemento pai. */
+  cursor: pointer; /* Mostra cursor de clique em cima do card. */
+  box-shadow: var(--shadow); /* Aplica sombra para destacar o card. */
+  transition:
+    transform 180ms ease,
+    /* Anima deslocamento e escala do card. */ border-color 180ms ease,
+    /* Anima mudanca de cor da borda. */ background-color 180ms ease; /* Anima transicao da cor de fundo. */
+}
+
+.profile button:hover {
+  transform: translateY(-5px) scale(1.01); /* Eleva levemente o card ao passar o mouse. */
+  border-color: var(
+    --card-border-hover
+  ); /* Clareia a borda para reforcar interacao. */
+  background: linear-gradient(
+    180deg,
+    var(--card-hover) 0%,
+    var(--card-hover-end) 100%
+  ); /* Escurece e destaca o fundo no hover. */
+}
+
+.profile button:focus-visible {
+  outline: 3px solid var(--ring); /* Exibe contorno forte para navegacao por teclado. */
+  outline-offset: 3px; /* Afasta o contorno da borda para melhorar visibilidade. */
+}
+
+figure {
+  padding: 0.55rem; /* Cria espaco interno entre a imagem e a borda do card. */
+}
+
+.profile img {
+  width: 100%; /* Faz a imagem ocupar toda a largura disponivel. */
+  aspect-ratio: 1 / 1; /* Mantem proporcao quadrada para todos os avatares. */
+  object-fit: cover; /* Corta a imagem sem distorcer para preencher o quadro. */
+  border-radius: 9px; /* Arredonda cantos da imagem. */
+  display: block; /* Remove espacamento inline inferior padrao da imagem. */
+}
+
+figcaption {
+  margin-top: 0.5rem; /* Separa o nome do perfil da imagem. */
+  font-size: 0.9rem; /* Define tamanho legivel para o nome do perfil. */
+  font-weight: 700; /* Deixa o nome do perfil em negrito. */
+  letter-spacing: 0.02em; /* Adiciona leve espacamento entre letras. */
+  color: var(--text-muted); /* Usa cor secundaria para estado normal. */
+  transition: color 180ms ease; /* Anima mudanca de cor no hover/focus. */
+}
+
+.profile button:hover figcaption,
+.profile button:focus-visible figcaption {
+  color: var(--text); /* Destaca o texto quando o card esta ativo. */
+}
+
+@media (max-width: 540px) {
+  body {
+    padding: 1rem 0.75rem; /* Reduz espacamento para melhor uso em telas pequenas. */
+  }
+
+  h1 {
+    margin-bottom: 1.6rem; /* Aproxima titulo dos cards no mobile. */
+  }
+
+  .page-header {
+    margin-bottom: 0.75rem; /* Ajusta espacamento do botao no mobile. */
+  }
+
+  .theme-toggle {
+    font-size: 0.8rem; /* Reduz texto do botao para telas pequenas. */
+    padding: 0.38rem 0.8rem; /* Ajusta area do botao no mobile sem ocupar muito espaco. */
+  }
+
+  .profile button {
+    max-width: 220px; /* Impede que o card fique largo demais em telas pequenas. */
+    margin: 0 auto; /* Centraliza o card quando houver espaco lateral. */
+  }
+}
+
+@media (max-width: 920px) {
+  .profiles {
+    grid-template-columns: repeat(
+      3,
+      minmax(0, 1fr)
+    ); /* Ajusta para tres colunas em tablets horizontais. */
+    max-width: 620px; /* Reduz a largura maxima para manter proporcoes visuais. */
+  }
+}
+
+@media (max-width: 700px) {
+  .profiles {
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    ); /* Exibe duas colunas em tablets pequenos e celulares grandes. */
+    max-width: 420px; /* Mantem os cards compactos e alinhados. */
+  }
+}
+
+@media (max-width: 480px) {
+  .profiles {
+    grid-template-columns: 1fr; /* Exibe um card por linha em celulares pequenos. */
+    max-width: 220px; /* Limita a largura para preservar o tamanho compacto. */
+  }
+}
+
+@media (hover: none) {
+  .theme-toggle:hover {
+    transform: none; /* Evita deslocamento do botao em dispositivos touch. */
+    background: var(--toggle-bg); /* Mantem fundo padrao sem hover em touch. */
+    border-color: var(
+      --toggle-border
+    ); /* Mantem borda padrao sem hover em touch. */
+  }
+
+  .profile button:hover {
+    transform: none; /* Remove elevacao em dispositivos touch para evitar estados presos. */
+    border-color: var(
+      --card-border
+    ); /* Mantem borda neutra sem feedback de hover. */
+    background: linear-gradient(
+      180deg,
+      var(--card) 0%,
+      var(--bg-soft) 100%
+    ); /* Restaura fundo padrao sem hover em touch. */
+  }
+}
