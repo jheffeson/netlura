@@ -90,6 +90,7 @@ main {
     0.75rem
   ); /* Adiciona respiro lateral interno em telas estreitas. */
   text-align: center; /* Centraliza textos e elementos internos. */
+  margin-top: -180px; /* Eleva o conteúdo principal para cima */
 }
 
 .page-header {
